@@ -2,7 +2,7 @@ html {
     width: 100vw;
     height: 100vh;
     background: white;
-}
+} 
 
 .header {
     display: flex;
@@ -50,4 +50,8 @@ input{
 
 .name {
     margin-bottom: 100px;
+}
+
+.game-board {
+    height: calc(100% - 180px);
 }
