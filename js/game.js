@@ -7,7 +7,9 @@ const Game = {
   framesCounter: 0,
   playerKeys: {
     TOP_KEY: 38,
-    BOTTOM_KEY: 40
+    BOTTOM_KEY: 40,
+    LEFT_KEY: 37,
+    RIGHT_KEY: 39
   },
   score: 0,
 
@@ -18,7 +20,6 @@ const Game = {
     this.height = window.innerHeight - 180;
     this.canvas.width = this.width;
     this.canvas.height = this.height;
-    
 
     this.start();
   },
@@ -33,8 +34,13 @@ const Game = {
       this.moveAll();
 
       this.clearObstacles();
+      if(this.player.posY < 20) {
+        this.score = this.score + 100;
+        this.player.posX = 680;
+        this.player.posY = 535;
+    }
       if (this.framesCounter % 70 === 0) this.generateObstacles();
-      if (this.framesCounter % 100 === 0) this.score++;
+      if (this.framesCounter % 50 === 0) this.score++;
       if (this.isCollision()) this.gameOver();
       if (this.framesCounter > 1000) this.framesCounter = 0;
     }, 1000 / this.fps);
@@ -44,8 +50,8 @@ const Game = {
     this.background = new Background(this.ctx, this.width, this.height);
     this.player = new Player(
       this.ctx,
-      150,
       100,
+      70,
       "./img/La-Rana.png",
       this.width,
       this.height,
@@ -73,10 +79,27 @@ const Game = {
   },
 
   generateObstacles: function() {
-    this.obstacles.push(new Obstacle(this.ctx, 15, 45, './img/coche.png', this.width, 250));
-    this.obstacles.push(new Obstacle(this.ctx, 15, 45, './img/coche.png', this.width, 360));
-    this.obstacles.push(new Obstacle(this.ctx, 15, 45, './img/coche.png', this.width, 480));
-    this.obstacles.push(new Obstacle(this.ctx, 15, 45, './img/coche.png', this.width, 145));
+    if (this.score > 0) {
+      this.obstacles.push(
+        new Obstacle(this.ctx, 15, 45, "./img/coche.png", this.width, 145, 10)
+      );
+    }
+
+    if (this.score % 2 == 0) {
+      this.obstacles.push(
+        new Obstacle(this.ctx, 15, 45, "./img/coche.png", this.width, 250, 7)
+      );
+    }
+    if (this.score % 3 == 0) {
+      this.obstacles.push(
+        new Obstacle(this.ctx, 15, 45, "./img/coche.png", this.width, 360, 5)
+      );
+    }
+    if (this.score % 5 == 0) {
+      this.obstacles.push(
+        new Obstacle(this.ctx, 15, 45, "./img/coche.png", this.width, 480, 4)
+      );
+    }
   },
 
   gameOver: function() {

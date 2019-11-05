@@ -7,10 +7,11 @@ class Player {
     this.image = new Image();
     this.image.src = image;
 
-    this.posX = 650;
-    this.posY = 500;
+    this.posX = 680;
+    this.posY = 535;
     this.posY0 = gameHeight * 0.98 - this.height;
-    this.vy = 0;
+    this.vy = 50;
+    this.vx = 50;
     this.gravity = 0;
     this.gameWidth = gameWidth;
 
@@ -23,7 +24,7 @@ class Player {
   }
 
   draw() {
-    this.ctx.drawImage(this.image, this.posX, this.posY, 150,100);
+    this.ctx.drawImage(this.image, this.posX, this.posY, 100,70);
   }
 
   move() {
@@ -41,13 +42,20 @@ class Player {
     document.addEventListener("keydown", e => {
       switch (e.keyCode) {
         case this.keys.TOP_KEY:
-        //   if (this.posY >= this.posY0) {
             this.posY -= this.vy;
-            this.vy += 10;
-        //   }
+            this.vy;
           break;
-        case this.keys.SPACE:
-          this.shoot();
+        case this.keys.BOTTOM_KEY:
+            this.posY += this.vy;
+            this.vy;
+          break;
+        case this.keys.LEFT_KEY:
+            this.posX -= this.vx;
+            this.vx;
+          break;
+        case this.keys.RIGHT_KEY:
+            this.posX += this.vx;
+            this.vx;
           break;
       }
     });
