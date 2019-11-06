@@ -9,8 +9,10 @@ const Game = {
     TOP_KEY: 38,
     BOTTOM_KEY: 40,
     LEFT_KEY: 37,
-    RIGHT_KEY: 39
+    RIGHT_KEY: 39,
+    SPACE: 86
   },
+  level: 0,
   score: 0,
 
   init: function() {
@@ -25,6 +27,7 @@ const Game = {
   },
 
   start: function() {
+    document.querySelector('.finish').style.display = "none";
     this.reset();
     this.interval = setInterval(() => {
       this.framesCounter++;
@@ -34,11 +37,12 @@ const Game = {
       this.moveAll();
 
       this.clearObstacles();
-      if(this.player.posY < 20) {
+      if (this.player.posY < 20) {
         this.score = this.score + 100;
         this.player.posX = 680;
         this.player.posY = 535;
-    }
+        this.level = this.level + 1;
+      }
       if (this.framesCounter % 70 === 0) this.generateObstacles();
       if (this.framesCounter % 50 === 0) this.score++;
       if (this.isCollision()) this.gameOver();
@@ -47,18 +51,20 @@ const Game = {
   },
 
   reset: function() {
+    var rr = Math.round(Math.random()*10);
+    
     this.background = new Background(this.ctx, this.width, this.height);
     this.player = new Player(
       this.ctx,
-      100,
+      80,
       70,
-      "./img/La-Rana.png",
+      `./img/La-Rana`+ rr +`.png`,
       this.width,
       this.height,
       this.playerKeys
     );
     this.obstacles = [];
-    ScoreBoard.init(this.ctx, this.score);
+    ScoreBoard.init(this.ctx, this.score, this.level);
   },
 
   clear: function() {
@@ -69,7 +75,7 @@ const Game = {
     this.background.draw();
     this.player.draw(this.framesCounter);
     this.obstacles.forEach(obstacle => obstacle.draw());
-    ScoreBoard.draw(this.score);
+    ScoreBoard.draw(this.score, this.level);
   },
 
   moveAll: function() {
@@ -79,31 +85,93 @@ const Game = {
   },
 
   generateObstacles: function() {
-    if (this.score > 0) {
-      this.obstacles.push(
-        new Obstacle(this.ctx, 15, 45, "./img/coche.png", this.width, 145, 10)
-      );
-    }
 
-    if (this.score % 2 == 0) {
-      this.obstacles.push(
-        new Obstacle(this.ctx, 15, 45, "./img/coche.png", this.width, 250, 7)
-      );
-    }
-    if (this.score % 3 == 0) {
-      this.obstacles.push(
-        new Obstacle(this.ctx, 15, 45, "./img/coche.png", this.width, 360, 5)
-      );
-    }
-    if (this.score % 5 == 0) {
-      this.obstacles.push(
-        new Obstacle(this.ctx, 15, 45, "./img/coche.png", this.width, 480, 4)
-      );
-    }
+    var r = Math.round(Math.random()*10);
+
+    if(this.score < 100){
+       var v1 = 10
+       var v2 = 8
+       var v3 = 7
+       var v4 = 6
+    } else if (this.score > 100) {
+       var v1 = 15
+       var v2 = 15
+       var v3 = 12
+       var v4 = 10
+    } else if (this.score > 200) {
+       var v1 = 19
+       var v2 = 15
+       var v3 = 13
+       var v4 = 17
+    } else if (this.score > 300) {
+       var v1 = 23
+       var v2 = 17
+       var v3 = 16
+       var v4 = 8
+    } else if (this.score > 400) {
+       var v1 = 22
+       var v2 = 25
+       var v3 = 18
+       var v4 = 13
+    } else if (this.score > 500) {
+       var v1 = 28
+       var v2 = 20
+       var v3 = 25
+       var v4 = 17
+    } else if (this.score > 600) {
+       var v1 = 30
+       var v2 = 26
+       var v3 = 25
+       var v4 = 15
+    } else if (this.score > 700) {
+        var v1 = 40
+        var v2 = 35
+        var v3 = 25
+        var v4 = 30
+     } else if (this.score > 800) {
+        var v1 = 60
+        var v2 = 55
+        var v3 = 45
+        var v4 = 50
+     } else if (this.score > 900) {
+        var v1 = 80
+        var v2 = 75
+        var v3 = 55
+        var v4 = 60
+     } else if (this.score > 1000) {
+        var v1 = 100
+        var v2 = 90
+        var v3 = 80
+        var v4 = 90
+     }
+
+
+      if (this.score > 0) {
+        this.obstacles.push(
+          new Obstacle(this.ctx, 15, 45, `./img/coche`+ r +`.png`, this.width, 145, v1)
+        );
+      }
+      if (this.score % 2 == 0) {
+        this.obstacles.push(
+          new Obstacle(this.ctx, 15, 45, `./img/coche`+ r +`.png`, this.width, 250, v2)
+        );
+      }
+      if (this.score % 3 == 0) {
+        this.obstacles.push(
+          new Obstacle(this.ctx, 15, 45, `./img/coche`+ r +`.png`, this.width, 360, v3)
+        );
+      }
+      if (this.score % 2.5) {
+        this.obstacles.push(
+          new Obstacle(this.ctx, 15, 45, `./img/coche`+ r +`.png`, this.width, 480, v4)
+        );
+      }
+    
   },
 
   gameOver: function() {
     clearInterval(this.interval);
+    document.querySelector('.finish').style.display = "flex";
   },
 
   isCollision: function() {
@@ -122,3 +190,4 @@ const Game = {
     this.obstacles = this.obstacles.filter(obstacle => obstacle.posX >= 0);
   }
 };
+

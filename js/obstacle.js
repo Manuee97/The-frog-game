@@ -15,7 +15,6 @@ class Obstacle {
 
     draw() {
       this.ctx.fillStyle = 'black';
-    //   this.ctx.fillRect(this.posX, this.posY, this.width, this.height);
       this.ctx.drawImage(this.image, this.posX, this.posY, 120, 50);
     }
   

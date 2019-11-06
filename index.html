@@ -24,13 +24,23 @@
 
     <div class="center">
       <div class="name">
-        <h1>Pon un nombre a la Rana Sevillana:</h1>
-        <input type="text" placeholder="Nombre" id="frogName" value=""/>
+        <h1>Give a name to the Rana Sevillana:</h1>
+        <input type="text" placeholder="Name" id="frogName" value=""/>
       </div>
 
       <div class="start">
         <button id="start-game" onclick="inicio()" class="button">Start Game</button>
       </div>
+    </div>
+
+    <div class="finish">
+        <div class="nFinish">
+            Has perdido desgraciao
+          </div>
+    
+          <div class="start">
+            <button id="start-game" onclick="inicio()" class="button">Start Game</button>
+          </div>
     </div>
 
     <div class="game-board"><canvas id="canvas"></canvas></div>

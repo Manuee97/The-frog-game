@@ -15,11 +15,9 @@ class Player {
     this.gravity = 0;
     this.gameWidth = gameWidth;
 
-    //   this.frames = 2;
     this.framesIndex = 0;
 
     this.keys = keys;
-    this.bullets = [];
     this.setListeners();
   }
 
@@ -35,7 +33,6 @@ class Player {
     //   this.vy = 1;
     //   this.posY = this.posY0;
     // }
-    // this.bullets.forEach(bullet => bullet.move())
    }
 
   setListeners() {
@@ -46,26 +43,24 @@ class Player {
             this.vy;
           break;
         case this.keys.BOTTOM_KEY:
+            if(this.posY < 500){
             this.posY += this.vy;
-            this.vy;
+            this.vy
+            }
           break;
         case this.keys.LEFT_KEY:
+            if(this.posX > 0){
             this.posX -= this.vx;
             this.vx;
+            }
           break;
         case this.keys.RIGHT_KEY:
+            if(this.posX < 1310){
             this.posX += this.vx;
             this.vx;
+        }
           break;
       }
     });
   }
-
-  shoot() {
-      this.bullets.push(new Bullet(this.ctx, 10, this.posX, this.posY, this.width, this.height, this.posY0))
-    }
-
-  /*clearBullets() {
-      this.bullets = this.bullets.filter(bullet => bullet.posX <= this.gameWidth)
-    }*/
 }

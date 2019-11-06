@@ -2,7 +2,7 @@ html {
     width: 100vw;
     height: 100vh;
     background: white;
-} 
+}
 
 .header {
     display: flex;
@@ -10,6 +10,7 @@ html {
 
 .game-board {
     display: none;
+    height: calc(100% - 180px);
 }
 
 .logo {
@@ -38,7 +39,7 @@ html {
     margin: 50px;
 }
 
-input{
+input {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -46,12 +47,31 @@ input{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-  }
+}
 
 .name {
     margin-bottom: 100px;
 }
 
-.game-board {
-    height: calc(100% - 180px);
+.finish {
+    display:none;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+    width: 900px;
+    height: 400px;
+    left: 220px;
+    position: absolute;
+    font-family: sans-serif;
+    font-size: 50px;
+    font-weight: 400;
+    color: black;
+    background: rgba(255, 255, 255, 0.9);
+    border: 20px solid rgba(0, 0, 0, .9)
+
+}
+
+.nFinish {
+    margin-top: 60px;
+    margin-bottom: 60px;
 }
