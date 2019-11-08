@@ -6,7 +6,8 @@ _El objetivo del juego es guiar una rana hasta el otro lado de la carretera. Par
 
 ## Comenzando 🚀
 
-_El jugador guía una rana que comienza en la parte inferior de la pantalla. Hay que cruzar una carretera llena de vehículos. Por cada nivel hay un aumento de velocidad en los coches, así que el jugador debe tener más cuidado para no ser aplastado._
+_El jugador guía una rana que comienza en la parte inferior de la pantalla. Hay que cruzar una carretera llena de vehículos. Por cada nivel hay un aumento de velocidad en los coches, así que el jugador debe tener más cuidado para no ser aplastado.
+También va a ir subiendo la puntuación y el nivel cada vez que cruces la carretera._
 
 _El único control que el jugador tiene son las direcciones  ←  ↑  ↓  →. Cada una hace que la rana vaya en esa dirección. Se debe guiar a la rana evitando ser atropellado en el camino_
 
