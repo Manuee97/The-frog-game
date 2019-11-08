@@ -205,7 +205,12 @@ const Game = {
     }
   },
 
+
+
   gameOver: function() {
+      let mySound = new Audio()
+      mySound.src = "./rana.mp3"
+      mySound.play()
     if (this.score > this.maxScore) {
       this.maxScore = this.score;
     }

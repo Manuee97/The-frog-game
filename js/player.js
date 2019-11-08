@@ -26,13 +26,7 @@ class Player {
   }
 
   move() {
-    // if(this.posY <= this.posY0) {
-    //   this.posY += this.vy;
-    //   this.vy += this.gravity;
-    // } else {
-    //   this.vy = 1;
-    //   this.posY = this.posY0;
-    // }
+
    }
 
   setListeners() {
